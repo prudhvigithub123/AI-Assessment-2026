@@ -1,0 +1,21 @@
+DFS
+graph = {
+&#39;A&#39;:[&#39;B&#39;,&#39;C&#39;],
+&#39;B&#39;:[&#39;D&#39;,&#39;E&#39;],
+&#39;C&#39;:[&#39;F&#39;],
+&#39;D&#39;:[],
+&#39;E&#39;:[&#39;F&#39;],
+&#39;F&#39;:[]
+}
+
+visited = set()
+
+def dfs(node):
+if node not in visited:
+print(node, end=&quot; &quot;)
+visited.add(node)
+
+for i in graph[node]:
+dfs(i)
+
+dfs(&#39;A&#39;)

@@ -1,0 +1,96 @@
+ 8-Queens Problem Using Backtracking
+class EightQueensSolver:
+
+    def __init__(self):
+
+        self.size = 8
+
+        self.board = [[0 for _ in range(self.size)] for _ in range(self.size)]
+
+        self.solution_count = 0
+
+
+    def print_board(self):
+
+        for row in self.board:
+
+            for value in row:
+
+                if value == 1:
+                    print("Q", end=" ")
+
+                else:
+                    print(".", end=" ")
+
+            print()
+
+        print("-" * 25)
+
+
+    def is_safe(self, row, col):
+
+        for i in range(col):
+
+            if self.board[row][i] == 1:
+                return False
+
+        i = row
+        j = col
+
+        while i >= 0 and j >= 0:
+
+            if self.board[i][j] == 1:
+                return False
+
+            i -= 1
+            j -= 1
+
+        i = row
+        j = col
+
+        while i < self.size and j >= 0:
+
+            if self.board[i][j] == 1:
+                return False
+
+            i += 1
+            j -= 1
+
+        return True
+
+
+    def solve(self, col=0):
+
+        if col >= self.size:
+
+            self.solution_count += 1
+
+            print("Solution", self.solution_count)
+
+            self.print_board()
+
+            return
+
+        for row in range(self.size):
+
+            if self.is_safe(row, col):
+
+                self.board[row][col] = 1
+
+                self.solve(col + 1)
+
+                self.board[row][col] = 0
+
+
+def main():
+
+    solver = EightQueensSolver()
+
+    solver.solve()
+
+    print("Total Solutions =", solver.solution_count)
+
+
+if __name__ == "__main__":
+
+    main()

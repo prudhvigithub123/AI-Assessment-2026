@@ -1,0 +1,44 @@
+Missionaries and Cannibals
+from collections import deque
+
+def is_valid(m, c):
+if m &lt; 0 or c &lt; 0 or m &gt; 3 or c &gt; 3:
+return False
+if (m &gt; 0 and m &lt; c):
+return False
+if (3-m &gt; 0 and 3-m &lt; 3-c):
+return False
+return True
+
+moves = [(1,0),(2,0),(0,1),(0,2),(1,1)]
+
+start = (3,3,1)
+goal = (0,0,0)
+
+queue = deque([(start, [])])
+visited = set()
+
+while queue:
+state, path = queue.popleft()
+
+if state == goal:
+print(&quot;Solution:&quot;)
+for s in path+[state]:
+print(s)
+break
+
+if state in visited:
+continue
+
+visited.add(state)
+
+m,c,b = state
+
+for dm,dc in moves:
+if b == 1:
+new = (m-dm, c-dc, 0)
+else:
+new = (m+dm, c+dc, 1)
+
+if is_valid(new[0], new[1]):
+queue.append((new, path+[state]))

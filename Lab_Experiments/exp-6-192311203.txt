@@ -1,0 +1,18 @@
+Vacuum Cleaner
+rooms = {&#39;A&#39;:&#39;Dirty&#39;,&#39;B&#39;:&#39;Dirty&#39;}
+
+location = &#39;A&#39;
+
+while True:
+if rooms[location] == &#39;Dirty&#39;:
+print(&quot;Cleaning Room&quot;, location)
+rooms[location] = &#39;Clean&#39;
+else:
+print(&quot;Room&quot;, location, &quot;is already clean&quot;)
+
+if location == &#39;A&#39;:
+location = &#39;B&#39;
+else:
+break
+
+print(&quot;Final State:&quot;, rooms)

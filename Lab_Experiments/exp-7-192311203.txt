@@ -1,0 +1,27 @@
+BFS
+graph = {
+&#39;A&#39;:[&#39;B&#39;,&#39;C&#39;],
+&#39;B&#39;:[&#39;D&#39;,&#39;E&#39;],
+&#39;C&#39;:[&#39;F&#39;],
+&#39;D&#39;:[],
+&#39;E&#39;:[&#39;F&#39;],
+&#39;F&#39;:[]
+}
+
+visited = []
+queue = []
+
+start = &#39;A&#39;
+
+visited.append(start)
+queue.append(start)
+
+while queue:
+node = queue.pop(0)
+print(node, end=&quot; &quot;)
+
+for i in graph[node]:
+
+if i not in visited:
+visited.append(i)
+queue.append(i)

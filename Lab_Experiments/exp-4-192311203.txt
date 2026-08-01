@@ -1,0 +1,37 @@
+Crypt-Arithmetic Problem
+from itertools import permutations
+
+# Function to solve the crypt-arithmetic puzzle
+def solve():
+    letters = ('S', 'E', 'N', 'D', 'M', 'O', 'R', 'Y')
+    digits = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+    for perm in permutations(digits, len(letters)):
+        d = dict(zip(letters, perm))
+
+        # Leading letters cannot be zero
+        if d['S'] == 0 or d['M'] == 0:
+            continue
+
+        SEND = 1000*d['S'] + 100*d['E'] + 10*d['N'] + d['D']
+        MORE = 1000*d['M'] + 100*d['O'] + 10*d['R'] + d['E']
+        MONEY = 10000*d['M'] + 1000*d['O'] + 100*d['N'] + 10*d['E'] + d['Y']
+
+        if SEND + MORE == MONEY:
+            print("Solution Found!")
+            print("-----------------------")
+            print("S =", d['S'])
+            print("E =", d['E'])
+            print("N =", d['N'])
+            print("D =", d['D'])
+            print("M =", d['M'])
+            print("O =", d['O'])
+            print("R =", d['R'])
+            print("Y =", d['Y'])
+            print("-----------------------")
+            print("SEND  =", SEND)
+            print("MORE  =", MORE)
+            print("MONEY =", MONEY)
+            return
+
+solve()
